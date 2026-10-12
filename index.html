@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Styling Piacenza | Catalogo</title>
+  <meta name="description" content="Catalogo Styling Piacenza: felpe, t-shirt, giacche, jeans, cappelli e accessori.">
+  <link rel="icon" href="img/logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;700&family=Inter:wght@500;600;800&family=Lilita+One&family=Lobster&family=Poppins:wght@400;500;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <nav>
+    <button class="burger" id="burger" aria-label="Apri il menu" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="home" id="home">
+    <div class="home-inner">
+      <h1 class="h-logo">Uniform<br>Studio</h1>
+      <hr class="h-rule">
+      <p class="h-claim">Dress the vision.</p>
+      <p class="h-sub">Luxury Fashion for Artists</p>
+    </div>
+  </section>
+
+  <section class="about" id="viewAbout" hidden>
+    <div class="about-inner">
+      <h2>Chi siamo?</h2>
+      <p>Siamo una realtà dedicata allo styling nel mondo rap e urban, specializzata nella creazione di outfit per artisti, shooting fotografici e video musicali.</p>
+      <h2>Di cosa ci occupiamo?</h2>
+      <p>Ci occupiamo della creazione e della cura completa del look, dalla selezione dei capi alla composizione dell’outfit, per valorizzare l’identità e lo stile di ogni artista.</p>
+      <h2>Che tipo di capi abbiamo?</h2>
+      <p>Disponiamo di un’ampia selezione di capi, dai brand di lusso allo streetwear e molto altro, per creare look diversi e personalizzati in base al progetto.</p>
+      <h2>Per quali progetti lavoriamo?</h2>
+      <p>Realizziamo styling per videoclip musicali, shooting fotografici, copertine, contenuti promozionali e progetti artistici.</p>
+      <h2>Dove ci troviamo?</h2>
+      <p>La nostra base è a Piacenza, ma siamo disponibili a spostarci anche in altre città per shooting, videoclip e collaborazioni.</p>
+      <h2>Forniamo outfit completi?</h2>
+      <p>Sì! Ci occupiamo della selezione e della composizione del look completo, curando i dettagli per creare un’immagine coerente con la tua musica e la tua personalità.</p>
+      <img class="about-wolf" src="img/lupo.png" alt="">
+    </div>
+  </section>
+
+  <div id="viewCatalog" hidden>
+    <section class="catalog" id="catalogo">
+      <div class="catalog-head">
+        <h2 id="catTitle">Catalogo generale</h2>
+        <p class="count" id="count" aria-live="polite"></p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filtra per categoria"></div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <footer aria-hidden="true"></footer>
+  </div>
+</main>
+
+<div class="overlay" id="overlay" hidden></div>
+<aside class="drawer" id="drawer" aria-label="Menu brand" inert>
+  <div class="drawer-head">
+    <h2>Menu</h2>
+    <button class="close-d" id="closeDrawer" aria-label="Chiudi il menu">&times;</button>
+  </div>
+  <ul class="brand-list" id="brandList"></ul>
+</aside>
+
+<dialog id="modal" aria-label="Foto del capo">
+  <button class="close" id="close" aria-label="Chiudi">&times;</button>
+  <div class="modal-img"><img id="mImg" alt=""></div>
+  <div class="modal-img"><img id="mImg2" alt=""></div>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
