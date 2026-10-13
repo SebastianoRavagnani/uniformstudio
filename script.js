@@ -304,7 +304,8 @@ function closeDrawer() {
 const VIEWS = ["home", "viewAbout", "viewPrezzi", "viewCatalog"];
 function showView(id) {
   VIEWS.forEach(v => { $(v).hidden = v !== id; });
-  document.body.classList.toggle("in-catalog", id === "viewCatalog");
+  /* logo nella barra: in tutte le pagine tranne la home */
+  document.body.classList.toggle("in-catalog", id !== "home");
 }
 function showCatalog(b, c) {
   brand = b; cat = c;
