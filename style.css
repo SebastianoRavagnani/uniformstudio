@@ -228,3 +228,7 @@ body.in-catalog .topbar-logo{display:block}
 @keyframes coin-bar{from{transform:translate(-50%,-50%) perspective(500px) rotateY(0)}to{transform:translate(-50%,-50%) perspective(500px) rotateY(360deg)}}
 .home .h-logo-img{animation:coin-home 8s linear infinite;will-change:transform}
 .topbar-logo{animation:coin-bar 8s linear infinite;will-change:transform}
+
+/* Scritta "Uniform Studio" al centro della barra (solo in home), alta quanto il menu hamburger */
+.topbar-wordmark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:46px;width:auto;max-width:calc(100% - 150px);object-fit:contain}
+body.in-catalog .topbar-wordmark{display:none}
