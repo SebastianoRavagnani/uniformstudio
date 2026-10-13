@@ -216,3 +216,15 @@ body.in-catalog .topbar-logo{display:block}
 .drawer-head h2,.brand-btn{font-family:"Poppins","DM Sans",system-ui,sans-serif;font-weight:800;letter-spacing:-.01em}
 .drawer-head h2{font-size:1.6rem}
 .brand-btn{font-size:1.25rem}
+
+/* Pagine del catalogo: stesso font del menu a tendina (Poppins ExtraBold) */
+.catalog h2{font-family:"Poppins","DM Sans",system-ui,sans-serif;font-weight:800;font-size:clamp(1.8rem,5vw,3rem);letter-spacing:-.01em;line-height:1.1}
+.count,.empty{font-family:"Poppins","DM Sans",system-ui,sans-serif;font-weight:800;letter-spacing:-.01em}
+.chip{font-family:"Poppins","DM Sans",system-ui,sans-serif;font-weight:800;letter-spacing:-.01em;text-transform:uppercase}
+.card span.cat{font-family:"Poppins","DM Sans",system-ui,sans-serif;font-weight:800;letter-spacing:-.01em}
+
+/* Logo che gira come una moneta (barra in alto e home) */
+@keyframes coin-home{from{transform:perspective(900px) rotateY(0)}to{transform:perspective(900px) rotateY(360deg)}}
+@keyframes coin-bar{from{transform:translate(-50%,-50%) perspective(500px) rotateY(0)}to{transform:translate(-50%,-50%) perspective(500px) rotateY(360deg)}}
+.home .h-logo-img{animation:coin-home 8s linear infinite;will-change:transform}
+.topbar-logo{animation:coin-bar 8s linear infinite;will-change:transform}

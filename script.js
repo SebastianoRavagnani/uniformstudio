@@ -3,6 +3,9 @@
 const WHATSAPP = "390000000000";
 
 const BRANDS = ["Amiri", "Bape", "Balenciaga", "Celine", "Palm Angels", "Louis Vuitton", "Moncler", "Off White", "Gucci", "Corteiz", "Zanotti", "Essentials", "Hermès", "Burberry", "New Era"];
+/* Nome mostrato al posto del nome interno del brand */
+const BRAND_LABEL = { Bape: "A Bathing Ape" };
+const labelBrand = b => BRAND_LABEL[b] || b;
 const CATS = ["Jacket", "Hoodie", "T-shirt", "Jeans", "Shorts", "Sweatpants", "Accessories", "Cap"];
 
 /* ====== FOTO ======
@@ -247,7 +250,7 @@ function renderFilters() {
 function renderGrid() {
   const list = PRODUCTS.filter(p =>
     (brand === "Tutti" || p.brand === brand) && (cat === "Tutti" || p.cat === cat));
-  $("catTitle").textContent = brand === "Tutti" ? "Catalogo generale" : `${brand}, ${cat}`;
+  $("catTitle").textContent = brand === "Tutti" ? "Catalogo generale" : `${labelBrand(brand)}, ${cat}`;
   filters.hidden = brand !== "Tutti";
   count.textContent = `${list.length} ${list.length === 1 ? "capo" : "capi"}`;
   grid.innerHTML = "";
@@ -383,7 +386,7 @@ function renderDrawer() {
     const li = document.createElement("li");
     const btn = document.createElement("button");
     btn.className = "brand-btn";
-    btn.textContent = name;
+    btn.textContent = labelBrand(name);
     btn.setAttribute("aria-expanded", "false");
     const sub = document.createElement("ul");
     sub.className = "cat-list";
