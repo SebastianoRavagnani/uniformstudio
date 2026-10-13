@@ -154,8 +154,65 @@ body.lock{overflow:hidden}
 .about p{margin-top:10px;font-weight:400;font-size:clamp(1.05rem,2.6vw,1.3rem);line-height:1.6}
 .about-wolf{display:block;width:clamp(90px,16vw,130px);height:auto;margin:clamp(28px,5vw,48px) auto 0}
 
-/* Menu a tendina nello stile di "Uniform Studio": script bianco con contorno rosso */
-.drawer-head h2,.brand-btn{font-family:"Lobster","Lilita One",cursive;font-weight:400;text-transform:none;letter-spacing:.01em;color:var(--white);-webkit-text-stroke:.12em var(--red);paint-order:stroke fill;text-shadow:.05em .06em 0 var(--red-dark)}
-.drawer-head h2{font-size:2.2rem}
-.brand-btn{font-size:1.8rem}
-.brand-btn:hover,.brand-btn[aria-expanded="true"]{color:var(--white);-webkit-text-stroke-color:var(--red-dark)}
+/* Menu a tendina: scritte rosse in stampatello bold su sfondo bianco, con "x" rossa */
+.drawer-head h2,.brand-btn{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.03em;color:var(--red);-webkit-text-stroke:0;text-shadow:none}
+.drawer-head h2{font-size:2rem}
+.brand-btn{font-size:1.7rem}
+.brand-btn::after{color:var(--red);font-weight:700}
+.brand-btn:hover,.brand-btn[aria-expanded="true"]{color:var(--red-dark)}
+
+/* Home: logo grande + claim in alta risoluzione */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.home .h-logo-img{width:min(86vw,560px);height:auto}
+.home .h-claim-img{width:min(92vw,760px);height:auto;margin-top:clamp(16px,3vw,32px)}
+
+/* Card: cornice aperta + etichetta con barra rossa */
+.card-img{border:0;padding:12px;background:var(--white)}
+.card-img::before,.card-img::after{content:"";position:absolute;pointer-events:none}
+.card-img::before,.card-img::after{
+  --metal:linear-gradient(135deg,#0a0a0a 0%,#e9e9e9 14%,#6d6d6d 28%,#fafafa 42%,#151515 58%,#bdbdbd 74%,#fff 86%,#1a1a1a 100%);
+  border:4px solid transparent;border-image:var(--metal) 1;
+  filter:drop-shadow(1px 1px 0 var(--red))}
+.card-img::before{inset:0 16px 16px 0;border-right:0;border-bottom:0}
+.card-img::after{inset:16px 0 0 16px;border-left:0;border-top:0}
+.card:hover .card-img,.card:focus-visible .card-img{border:0;box-shadow:none;transform:translateY(-4px)}
+.card span.cat{margin-top:12px;padding-left:8px;border-left:4px solid var(--red);font-size:.85rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.2}
+
+/* Info: titoli rossi, testi neri */
+.about p{color:var(--black)}
+
+/* Prezzi */
+.price-h{margin-top:clamp(36px,6vw,56px);padding-left:12px;border-left:4px solid var(--red);font-weight:800;font-size:clamp(1.05rem,2.8vw,1.3rem);line-height:1.2;text-transform:uppercase;letter-spacing:.02em;color:var(--red)}
+.price-h + p{margin-top:14px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
+.plan{position:relative;padding:24px 22px 22px;background:var(--white);display:flex;flex-direction:column;gap:4px}
+.plan::before,.plan::after{
+  --metal:linear-gradient(135deg,#0a0a0a 0%,#e9e9e9 14%,#6d6d6d 28%,#fafafa 42%,#151515 58%,#bdbdbd 74%,#fff 86%,#1a1a1a 100%);
+  content:"";position:absolute;pointer-events:none;border:4px solid transparent;border-image:var(--metal) 1;filter:drop-shadow(1px 1px 0 var(--red))}
+.plan::before{inset:0 12px 12px 0;border-right:0;border-bottom:0}
+.plan::after{inset:12px 0 0 12px;border-left:0;border-top:0}
+.plan h4{font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;text-transform:uppercase;letter-spacing:.03em;color:var(--red)}
+.about .plan-desc{margin-top:0;font-size:1rem;font-weight:500}
+.about .plan-price{margin-top:16px;font-family:var(--display);font-size:clamp(2.4rem,6vw,3.2rem);line-height:1;color:var(--black)}
+.travel{width:100%;margin-top:18px;border-collapse:collapse;font-size:clamp(1rem,2.4vw,1.15rem);border-top:3px solid var(--black)}
+.travel th,.travel td{padding:14px 4px;border-bottom:1px solid var(--black);text-align:left;color:var(--black);font-weight:500}
+.travel thead th{font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;color:var(--red)}
+.travel td{text-align:right;font-weight:700}
+.travel thead th:last-child{text-align:right}
+.about .price-note{margin-top:18px;font-size:.95rem;line-height:1.5}
+@media (max-width:600px){
+  .plans{grid-template-columns:1fr}
+  .plan{flex-direction:row;flex-wrap:wrap;align-items:baseline;justify-content:space-between;column-gap:12px}
+  .plan h4{flex:1 1 100%}
+  .about .plan-desc{flex:1}
+  .about .plan-price{margin-top:0}
+}
+
+/* Logo piccolo al centro della barra (solo nel catalogo) */
+.topbar-logo{display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:42px;width:auto;border-radius:50%}
+body.in-catalog .topbar-logo{display:block}
+
+/* Menu a tendina: stesso font dei titoli di "Info" (Poppins ExtraBold, maiuscolo) */
+.drawer-head h2,.brand-btn{font-family:"Poppins","DM Sans",system-ui,sans-serif;font-weight:800;letter-spacing:-.01em}
+.drawer-head h2{font-size:1.6rem}
+.brand-btn{font-size:1.25rem}

@@ -298,28 +298,33 @@ function closeDrawer() {
   burger.focus();
 }
 
+const VIEWS = ["home", "viewAbout", "viewPrezzi", "viewCatalog"];
+function showView(id) {
+  VIEWS.forEach(v => { $(v).hidden = v !== id; });
+  document.body.classList.toggle("in-catalog", id === "viewCatalog");
+}
 function showCatalog(b, c) {
   brand = b; cat = c;
   renderFilters(); renderGrid();
-  $("home").hidden = true;
-  $("viewAbout").hidden = true;
-  $("viewCatalog").hidden = false;
+  showView("viewCatalog");
   document.body.classList.add("page-white");
   closeDrawer();
   window.scrollTo(0, 0);
 }
 function showAbout() {
-  $("home").hidden = true;
-  $("viewCatalog").hidden = true;
-  $("viewAbout").hidden = false;
+  showView("viewAbout");
+  document.body.classList.add("page-white");
+  closeDrawer();
+  window.scrollTo(0, 0);
+}
+function showPrezzi() {
+  showView("viewPrezzi");
   document.body.classList.add("page-white");
   closeDrawer();
   window.scrollTo(0, 0);
 }
 function showHome() {
-  $("viewCatalog").hidden = true;
-  $("viewAbout").hidden = true;
-  $("home").hidden = false;
+  showView("home");
   document.body.classList.remove("page-white");
   if (drawer.classList.contains("open")) closeDrawer();
   window.scrollTo(0, 0);
@@ -337,13 +342,30 @@ function renderDrawer() {
   homeLi.appendChild(homeBtn);
   ul.appendChild(homeLi);
 
-  const aboutLi = document.createElement("li");
-  const aboutBtn = document.createElement("button");
-  aboutBtn.className = "brand-btn solo";
-  aboutBtn.textContent = "Info";
-  aboutBtn.onclick = () => showAbout();
-  aboutLi.appendChild(aboutBtn);
-  ul.appendChild(aboutLi);
+  const infoLi = document.createElement("li");
+  const infoBtn = document.createElement("button");
+  infoBtn.className = "brand-btn";
+  infoBtn.textContent = "Info e prezzi";
+  infoBtn.setAttribute("aria-expanded", "false");
+  const infoSub = document.createElement("ul");
+  infoSub.className = "cat-list";
+  [["Info", showAbout], ["Prezzi", showPrezzi]].forEach(([label, fn]) => {
+    const cli = document.createElement("li");
+    const cb = document.createElement("button");
+    cb.className = "cat-btn";
+    cb.textContent = label;
+    cb.onclick = fn;
+    cli.appendChild(cb);
+    infoSub.appendChild(cli);
+  });
+  infoBtn.onclick = () => {
+    const isOpen = infoBtn.getAttribute("aria-expanded") === "true";
+    ul.querySelectorAll(".brand-btn").forEach(b => b.setAttribute("aria-expanded", "false"));
+    ul.querySelectorAll(".cat-list").forEach(s => s.classList.remove("open"));
+    if (!isOpen) { infoBtn.setAttribute("aria-expanded", "true"); infoSub.classList.add("open"); }
+  };
+  infoLi.append(infoBtn, infoSub);
+  ul.appendChild(infoLi);
 
   const first = document.createElement("li");
   const gen = document.createElement("button");
