@@ -254,3 +254,20 @@ body.in-catalog .topbar-wordmark{display:none}
 .brand-btn.solo{border-bottom:3px solid transparent;border-image:var(--metal-h) 1;box-shadow:0 1px 0 var(--red)}
 .close-d{border:3px solid transparent;border-image:var(--metal-d) 1;box-shadow:1px 1px 0 var(--red)}
 .close-d:hover{border-image:none;border-color:var(--red);box-shadow:none}
+
+/* Barra in alto + hamburger: stesso metallico grigio-rosso di card, filtri e menu */
+.topbar{
+  border-bottom:4px solid transparent;
+  border-image:var(--metal-h) 1;
+  box-shadow:0 2px 0 var(--red)}
+.burger{
+  border:3px solid transparent;
+  background:linear-gradient(var(--white),var(--white)) padding-box,var(--metal-d) border-box;
+  filter:drop-shadow(1px 1px 0 var(--red))}
+.burger span{background:var(--red)}
+.burger:hover{border-color:transparent;
+  background:linear-gradient(var(--white),var(--white)) padding-box,linear-gradient(var(--red),var(--red)) border-box}
+.burger:hover span{background:var(--red-dark)}
+
+/* Sottotitolo home: immagine metallica */
+.home .h-sub-img{width:min(92vw,220px);height:auto;margin-top:clamp(-20px,-1vw,-20px)}
