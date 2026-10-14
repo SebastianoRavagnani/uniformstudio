@@ -232,3 +232,25 @@ body.in-catalog .topbar-logo{display:block}
 /* Scritta "Uniform Studio" al centro della barra (solo in home), alta quanto il menu hamburger */
 .topbar-wordmark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:30px;width:auto;max-width:calc(100% - 150px);object-fit:contain}
 body.in-catalog .topbar-wordmark{display:none}
+
+/* Contorni metallici grigio-rossi (stesso effetto delle card) */
+:root{
+  --metal-d:linear-gradient(135deg,#0a0a0a 0%,#e9e9e9 14%,#6d6d6d 28%,#fafafa 42%,#151515 58%,#bdbdbd 74%,#fff 86%,#1a1a1a 100%);
+  --metal-v:linear-gradient(180deg,#0a0a0a 0%,#e9e9e9 14%,#6d6d6d 28%,#fafafa 42%,#151515 58%,#bdbdbd 74%,#fff 86%,#1a1a1a 100%);
+  --metal-h:linear-gradient(90deg,#0a0a0a 0%,#e9e9e9 14%,#6d6d6d 28%,#fafafa 42%,#151515 58%,#bdbdbd 74%,#fff 86%,#1a1a1a 100%)}
+
+/* Filtri del catalogo generale: contorno arrotondato metallico */
+.chip{
+  border:3px solid transparent;
+  background:linear-gradient(var(--white),var(--white)) padding-box,var(--metal-d) border-box;
+  filter:drop-shadow(1px 1px 0 var(--red))}
+.chip:hover{border-color:transparent;color:var(--red);
+  background:linear-gradient(var(--white),var(--white)) padding-box,linear-gradient(var(--red),var(--red)) border-box}
+.chip[aria-pressed="true"]{border-color:transparent;color:var(--white);
+  background:linear-gradient(var(--black),var(--black)) padding-box,var(--metal-d) border-box}
+
+/* Menu a tendina: linee nere in metallico grigio-rosso */
+.drawer{border-right:4px solid transparent;border-image:var(--metal-v) 1;box-shadow:2px 0 0 var(--red)}
+.brand-btn.solo{border-bottom:3px solid transparent;border-image:var(--metal-h) 1;box-shadow:0 1px 0 var(--red)}
+.close-d{border:3px solid transparent;border-image:var(--metal-d) 1;box-shadow:1px 1px 0 var(--red)}
+.close-d:hover{border-image:none;border-color:var(--red);box-shadow:none}
