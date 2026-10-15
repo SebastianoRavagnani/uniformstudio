@@ -190,6 +190,26 @@ const coloreIn = txt => {
 };
 const coloreDi = (name, desc) => coloreIn(name) || coloreIn(desc) || "Altro";
 
+/* ====== TAGLIE ======
+   La taglia e' scritta nel nome del file: "styling (1) S.jpeg" = taglia S. Chiave = numero della foto.
+   Cintura = numero (es. 85). I capi senza taglia (borse, cappelli, ecc.) non compaiono qui e il file e' "styling (N).jpeg".
+   Se cambi il nome di una foto aggiorna anche questa lista. */
+const SIZES = {
+  "1": "S", "2": "M", "3": "M", "3.1": "M", "4": "M", "5": "S", "6": "M", "7": "M",
+  "7.1": "M", "8": "M", "9": "M", "10": "M", "11": "M", "12": "M", "12.1": "M", "13": "S",
+  "14": "S", "15": "S", "16": "S", "17": "S", "18": "S", "19": "S", "20": "S", "21": "S",
+  "22": "S", "23": "S", "24.5": "M", "25": "85", "27": "M", "28": "M", "28.1": "M", "28.3": "M",
+  "28.4": "M", "28.5": "M", "29": "L", "30": "M", "31": "L", "32": "M", "32.5": "M", "32.6": "M",
+  "33": "M", "34": "S", "35": "S", "36": "S", "37": "S", "38": "S", "39": "S", "39.1": "S",
+  "40": "M", "41": "85", "44": "M", "45": "S", "45.5": "L", "45.6": "L", "45.7": "M", "45.8": "L",
+  "48": "S", "49": "XS", "50": "M", "50.5": "L", "50.6": "L", "50.7": "L", "51": "L", "51.1": "L",
+  "51.2": "L", "51.2.1": "L", "51.3": "L", "51.4": "L", "51.4.1": "L", "51.5": "M", "52": "85", "53": "85",
+  "54.1": "L", "54.2": "L", "54.3": "XL", "54.4": "XL", "55": "S", "55.1": "L", "55.2": "L", "55.2.1": "L",
+  "56": "M", "58": "M", "61": "L", "61.1": "M", "61.2": "M", "61.3": "M", "62": "M", "65": "M",
+  "67": "L"
+};
+const tagliaDi = n => SIZES[String(n)] || "";
+
 const PRODUCTS_RAW = NUMERI.map(n => {
   const d = DETTAGLI[n] || {};
   return {
@@ -198,8 +218,9 @@ const PRODUCTS_RAW = NUMERI.map(n => {
     name: d.name || `Capo ${n}`,
     desc: d.desc || "Scrivici per taglia, colore e disponibilita.",
     color: d.color || coloreDi(d.name || "", d.desc || ""),
-    img: encodeURI(`img/styling (${n}).${ESTENSIONE}`) + "?v=7",
-    back: BACKS.includes(n) ? encodeURI(`img/styling (${n}) back.${ESTENSIONE}`) + "?v=7" : ""
+    size: tagliaDi(n),
+    img: encodeURI(`img/styling (${n})${tagliaDi(n) ? " " + tagliaDi(n) : ""}.${ESTENSIONE}`) + "?v=8",
+    back: BACKS.includes(n) ? encodeURI(`img/styling (${n}) back.${ESTENSIONE}`) + "?v=8" : ""
   };
 });
 
@@ -263,7 +284,9 @@ function renderGrid() {
     card.className = "card";
     card.innerHTML = `
       <div class="card-img"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
-      <span class="cat">${p.cat}</span>`;
+      <div class="card-info">
+        ${p.size ? `<span class="size">${p.size}</span>` : ""}
+      </div>`;
     card.querySelector("img").onerror = () => card.remove();
     card.onclick = () => openModal(p);
     grid.appendChild(card);

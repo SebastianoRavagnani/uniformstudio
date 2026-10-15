@@ -3,8 +3,8 @@
   --ink:#0d0d0d;
   --white:#fff;
   --paper:#f4f4f4;
-  --red:#e10613;
-  --red-dark:#a80410;
+  --red:#000;
+  --red-dark:#555;
   --line:#e2e2e2;
   --display:"Anton","Impact",sans-serif;
   --body:"DM Sans",system-ui,sans-serif;
@@ -27,10 +27,10 @@ a{color:inherit}
 
 /* Bottoni */
 .btn,.btn-small{display:inline-block;background:var(--red);color:var(--white)!important;text-decoration:none;font-weight:700;padding:14px 28px;border-radius:2px;border:2px solid var(--red);transition:background .2s,color .2s}
-.btn:hover,.btn-small:hover{background:var(--black);border-color:var(--white)}
+.btn:hover,.btn-small:hover{background:#333;border-color:#333}
 .btn-small{padding:8px 16px;font-size:.9rem}
 .btn-light{background:var(--white);color:var(--black)!important;border-color:var(--white)}
-.btn-light:hover{background:var(--red);border-color:var(--red)}
+.btn-light:hover{background:#ddd;border-color:#ddd;color:var(--black)!important}
 
 /* Catalogo */
 .catalog{padding:clamp(40px,6vw,88px) clamp(16px,5vw,64px)}
@@ -124,7 +124,7 @@ body.lock{overflow:hidden}
 
 [hidden]{display:none!important}
 
-/* Home: titolo centrato, sfondo bianco, scritte rosse */
+/* Home: titolo centrato, sfondo bianco, scritte nere */
 .home{background:var(--white);color:var(--red);min-height:calc(100vh - 70px);min-height:calc(100dvh - 70px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px clamp(20px,6vw,64px)}
 .home-inner{width:min(100%,980px);display:flex;flex-direction:column;align-items:center;font-family:"Inter","DM Sans",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;text-transform:uppercase;animation:enter .9s cubic-bezier(.2,.8,.2,1) both}
 .home h1{font-weight:800;font-size:clamp(3.6rem,14vw,8.5rem);line-height:1;letter-spacing:-.01em}
@@ -139,7 +139,7 @@ body.lock{overflow:hidden}
 /* Barra nera nelle pagine bianche (catalogo), bianca in home */
 .topbar{transition:background .25s,border-color .25s}
 
-/* "Dress the vision." nello stile del logo: script bianco con contorno rosso */
+/* "Dress the vision." nello stile del logo: script bianco con contorno nero */
 .home .h-claim{font-family:"Lobster","Lilita One",cursive;text-transform:none;font-weight:400;letter-spacing:.01em;font-size:clamp(2.2rem,8vw,4.6rem);color:var(--white);-webkit-text-stroke:.12em var(--red);paint-order:stroke fill;text-shadow:.05em .06em 0 var(--red-dark)}
 
 /* "Uniform Studio" nello stesso stile del claim */
@@ -154,7 +154,7 @@ body.lock{overflow:hidden}
 .about p{margin-top:10px;font-weight:400;font-size:clamp(1.05rem,2.6vw,1.3rem);line-height:1.6}
 .about-wolf{display:block;width:clamp(90px,16vw,130px);height:auto;margin:clamp(28px,5vw,48px) auto 0}
 
-/* Menu a tendina: scritte rosse in stampatello bold su sfondo bianco, con "x" rossa */
+/* Menu a tendina: scritte nere in stampatello bold su sfondo bianco, con "x" nera */
 .drawer-head h2,.brand-btn{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.03em;color:var(--red);-webkit-text-stroke:0;text-shadow:none}
 .drawer-head h2{font-size:2rem}
 .brand-btn{font-size:1.7rem}
@@ -166,7 +166,7 @@ body.lock{overflow:hidden}
 .home .h-logo-img{width:min(86vw,560px);height:auto}
 .home .h-claim-img{width:min(92vw,760px);height:auto;margin-top:clamp(16px,3vw,32px)}
 
-/* Card: cornice aperta + etichetta con barra rossa */
+/* Card: cornice aperta + etichetta con barra nera */
 .card-img{border:0;padding:12px;background:var(--white)}
 .card-img::before,.card-img::after{content:"";position:absolute;pointer-events:none}
 .card-img::before,.card-img::after{
@@ -249,13 +249,13 @@ body.in-catalog .topbar-wordmark{display:none}
 .chip[aria-pressed="true"]{border-color:transparent;color:var(--white);
   background:linear-gradient(var(--black),var(--black)) padding-box,var(--metal-d) border-box}
 
-/* Menu a tendina: linee nere in metallico grigio-rosso */
+/* Menu a tendina: linee nere in metallico bianco e nero */
 .drawer{border-right:4px solid transparent;border-image:var(--metal-v) 1;box-shadow:2px 0 0 var(--red)}
 .brand-btn.solo{border-bottom:3px solid transparent;border-image:var(--metal-h) 1;box-shadow:0 1px 0 var(--red)}
 .close-d{border:3px solid transparent;border-image:var(--metal-d) 1;box-shadow:1px 1px 0 var(--red)}
 .close-d:hover{border-image:none;border-color:var(--red);box-shadow:none}
 
-/* Barra in alto + hamburger: stesso metallico grigio-rosso di card, filtri e menu */
+/* Barra in alto + hamburger: stesso metallico bianco e nero di card, filtri e menu */
 .topbar{
   border-bottom:4px solid transparent;
   border-image:var(--metal-h) 1;
@@ -271,3 +271,8 @@ body.in-catalog .topbar-wordmark{display:none}
 
 /* Sottotitolo home: immagine metallica */
 .home .h-sub-img{width:min(92vw,220px);height:auto;margin-top:clamp(-20px,-1vw,-20px)}
+
+/* Sotto la card: tipo di capo + taglia sulla stessa riga */
+.card-info{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px;margin-top:12px}
+.card .card-info span.cat{margin-top:0}
+.card span.size{display:block;font-family:"Poppins","DM Sans",system-ui,sans-serif;font-size:.85rem;font-weight:800;letter-spacing:-.01em;line-height:1.2;text-transform:uppercase;padding-left:8px;border-left:4px solid var(--red)}
