@@ -312,3 +312,22 @@ body{background:#000;color:#fff}
 
 /* Logo e scritte un po' piu' in alto */
 .home{justify-content:center;padding-bottom:clamp(60px,16vh,150px)}
+
+
+/* Taglia cappelli: il 7 staccato dalla frazione (es. 7  1:8) */
+.size .sz-gap{display:inline-block;width:.7em}
+
+/* Finestra del capo: spazio + linea metallica sottile tra fronte e retro */
+dialog[open]{column-gap:14px}
+.modal-img + .modal-img{
+  border-left:3px solid transparent;
+  border-image:var(--metal-v) 1;
+  box-shadow:-1px 0 0 var(--red-dark)}
+@media (max-width:760px){
+  dialog[open]{column-gap:0;row-gap:12px}
+  .modal-img + .modal-img{
+    border-left:0;
+    border-top:3px solid transparent;
+    border-image:var(--metal-h) 1;
+    box-shadow:0 -1px 0 var(--red-dark)}
+}

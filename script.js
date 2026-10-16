@@ -143,7 +143,6 @@ const DETTAGLI = {
   7.1: { brand: "Amiri", cat: "T-shirt", name: "T-shirt nera logo Amiri tono su tono", desc: "T-shirt nera girocollo con grande logo Amiri grigio scuro tono su tono sul petto e piccolo monogramma MA sul fondo." },
   12.1: { brand: "Amiri", cat: "T-shirt", name: "T-shirt bianca Arts District", desc: "T-shirt bianca oversize con piccola stampa nera Amiri Arts District sul petto." },
   28.1: { brand: "Bape", cat: "Hoodie", name: "Felpa zip Shark camo azzurra", desc: "Felpa con cappuccio e zip integrale, camouflage azzurro e grafica squalo sul cappuccio." },
-  28.2: { brand: "Bape", cat: "Hoodie", name: "Felpa zip nera con cappuccio Shark camo verde", desc: "Felpa nera con zip integrale e cappuccio in camouflage verde con grafica squalo." },
   28.3: { brand: "Bape", cat: "Hoodie", name: "Felpa zip Shark camo verde", desc: "Felpa con cappuccio e zip integrale, camouflage verde con fondo beige e grafica squalo sul cappuccio." },
   28.4: { brand: "Bape", cat: "Hoodie", name: "Felpa zip Shark camo rosa", desc: "Felpa con cappuccio e zip integrale, camouflage rosa e rosso e grafica squalo sul cappuccio." },
   32.6: { brand: "Bape", cat: "T-shirt", name: "T-shirt bianca A Bathing Ape College", desc: "T-shirt bianca con grande scritta A Bathing Ape viola e Ape Head azzurro camouflage sul petto." },
@@ -151,6 +150,7 @@ const DETTAGLI = {
   45.8: { brand: "Moncler", cat: "Jacket", name: "Gilet piumino rosso con inserti beige", desc: "Gilet imbottito rosso con colletto alto, inserti beige sulle spalle, zip frontale, tasche con zip e patch Moncler sul petto." },
   "54.10": { brand: "Louis Vuitton", cat: "Accessories", color: "Nero", name: "Borsa a tracolla monogram nera e grigia con pochette", desc: "Borsa a tracolla in tela monogram grigio scuro con zip frontale, tracolla nera e pochette staccabile abbinata." },
   54.11: { brand: "Louis Vuitton", cat: "Accessories", color: "Blu", name: "Borsa a tracolla monogram blu navy con pochette", desc: "Borsa a tracolla in pelle blu navy con fantasia monogram effetto acquerello e pochette staccabile abbinata." },
+  66.1: { brand: "Hermès", cat: "Accessories", name: "Cintura nera fibbia H oro", desc: "Cintura nera in pelle con fibbia H oro." },
   67: { brand: "Burberry", cat: "Shorts", name: "Shorts check beige con logo TB", desc: "Shorts con fantasia check beige, coulisse in vita e logo TB applicato sulla gamba." }
 };
 
@@ -162,10 +162,10 @@ const BACKS = [1, 2, 3, 3.1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 28.3, 29, 30, 32.5, 3
    Numeri delle foto nell'ordine in cui compaiono. Le foto non elencate vanno in fondo, in ordine di numero.
    24.5 = piumino Amiri con ossa (primo degli Amiri), 55 = shorts Palm Angels (fra la giacca 50 e i pantaloni 51). */
 const ORDINE = [24.5, 1, 2, 3, 3.1, 4, 5, 6, 7, 7.1, 8, 9, 10, 11, 12, 12.1, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
-  27, 28, 28.1, 28.2, 28.3, 28.4, 28.5, 29, 30, 31, 32, 32.5, 32.6, 33, 34, 35, 36, 37, 38, 39, 39.1, 40, 41, 42, 43, 43.1, 44, 45, 45.5, 45.6, 45.7, 45.8, 46, 47, 48, 49,
+  27, 28, 28.1, 28.3, 28.4, 28.5, 29, 30, 31, 32, 32.5, 32.6, 33, 34, 35, 36, 37, 38, 39, 39.1, 40, 41, 42, 43, 43.1, 44, 45, 45.5, 45.6, 45.7, 45.8, 46, 47, 48, 49,
   50, 50.5, 50.7, 51.3, 51.4, "51.4.1", 51.5, 55, 55.1, 55.2, "55.2.1", 51, 51.1, 50.6, 51.2, "51.2.1", 51.6,
   52, 53, 54, 54.1, 54.2, 54.3, 54.4, 54.5, 54.6, 54.7, 54.8, 54.9, "54.10", 54.11, 56, 58,
-  64, 64.1, 64.2, 64.3, 61, 61.2, 61.3, 60, 60.1, 62, 61.1, 65, 66, 67, 63, 63.1, 63.2, 63.3, 59];
+  64, 64.1, 64.2, 64.3, 61, 61.2, 61.3, 60, 60.1, 62, 61.1, 65, 66, 66.1, 67, 63, 63.1, 63.2, 63.3, 59];
 /* Foto escluse dal catalogo (57 = doppione del piumino Amiri con ossa, tenuto come 24.5) */
 const ESCLUSI = [57];
 const NUMERI = [...ORDINE, ...Array.from({ length: TOTALE }, (_, i) => i + 1).filter(n => !ORDINE.includes(n))]
@@ -192,7 +192,7 @@ const coloreDi = (name, desc) => coloreIn(name) || coloreIn(desc) || "Altro";
 
 /* ====== TAGLIE ======
    La taglia e' scritta nel nome del file: "styling (1) S.jpeg" = taglia S. Chiave = numero della foto.
-   Cintura = numero (es. 85). I capi senza taglia (borse, cappelli, ecc.) non compaiono qui e il file e' "styling (N).jpeg".
+   Cintura = numero (es. 85, 110). Cappelli = misura scritta nel file come "7 1-8" (il trattino sostituisce la frazione) e mostrata come "7 1:8". I capi senza taglia (borse, cappelli, ecc.) non compaiono qui e il file e' "styling (N).jpeg".
    Se cambi il nome di una foto aggiorna anche questa lista. */
 const SIZES = {
   "1": "S", "2": "M", "3": "M", "3.1": "M", "4": "M", "5": "S", "6": "M", "7": "M",
@@ -201,14 +201,18 @@ const SIZES = {
   "22": "S", "23": "S", "24.5": "M", "25": "85", "27": "M", "28": "M", "28.1": "M", "28.3": "M",
   "28.4": "M", "28.5": "M", "29": "L", "30": "M", "31": "L", "32": "M", "32.5": "M", "32.6": "M",
   "33": "M", "34": "S", "35": "S", "36": "S", "37": "S", "38": "S", "39": "S", "39.1": "S",
-  "40": "M", "41": "85", "44": "M", "45": "S", "45.5": "L", "45.6": "L", "45.7": "M", "45.8": "L",
-  "48": "S", "49": "XS", "50": "M", "50.5": "L", "50.6": "L", "50.7": "L", "51": "L", "51.1": "L",
-  "51.2": "L", "51.2.1": "L", "51.3": "L", "51.4": "L", "51.4.1": "L", "51.5": "M", "52": "85", "53": "85",
-  "54.1": "L", "54.2": "L", "54.3": "XL", "54.4": "XL", "55": "S", "55.1": "L", "55.2": "L", "55.2.1": "L",
-  "56": "M", "58": "M", "61": "L", "61.1": "M", "61.2": "M", "61.3": "M", "62": "M", "65": "M",
+  "40": "M", "41": "85", "44": "M", "45": "S", "45.5": "XL", "45.6": "XL", "45.7": "M", "45.8": "XL",
+  "48": "S", "49": "XS", "50": "M", "50.5": "L", "50.6": "L", "50.7": "XL", "51": "XL", "51.1": "L",
+  "51.2": "XL", "51.2.1": "XL", "51.3": "XL", "51.4": "XL", "51.4.1": "XL", "51.5": "M", "52": "85", "53": "85",
+  "54.1": "XL", "54.2": "XL", "54.3": "XL", "54.4": "XL", "55": "S", "55.1": "XL", "55.2": "XL", "55.2.1": "XL",
+  "56": "M", "58": "M", "61": "L", "61.1": "L", "61.2": "M", "61.3": "M", "62": "M", "65": "M",
+  "63": "7 1-8", "63.1": "7 1-8", "63.2": "7 1-8", "63.3": "7 1-8",
+  "66": "110", "66.1": "110",
   "67": "L"
 };
 const tagliaDi = n => SIZES[String(n)] || "";
+/* Taglia mostrata: "7 1-8" diventa "7" + spazio + "1:8" (il 7 staccato dalla frazione, i due punti al posto del trattino) */
+const tagliaHtml = s => s.replace(/^(\d+)\s+(\d+)-(\d+)$/, '$1<i class="sz-gap"></i>$2:$3');
 
 const PRODUCTS_RAW = NUMERI.map(n => {
   const d = DETTAGLI[n] || {};
@@ -219,8 +223,8 @@ const PRODUCTS_RAW = NUMERI.map(n => {
     desc: d.desc || "Scrivici per taglia, colore e disponibilita.",
     color: d.color || coloreDi(d.name || "", d.desc || ""),
     size: tagliaDi(n),
-    img: encodeURI(`img/styling (${n})${tagliaDi(n) ? " " + tagliaDi(n) : ""}.${ESTENSIONE}`) + "?v=8",
-    back: BACKS.includes(n) ? encodeURI(`img/styling (${n}) back.${ESTENSIONE}`) + "?v=8" : ""
+    img: encodeURI(`img/styling (${n})${tagliaDi(n) ? " " + tagliaDi(n) : ""}.${ESTENSIONE}`) + "?v=9",
+    back: BACKS.includes(n) ? encodeURI(`img/styling (${n}) back.${ESTENSIONE}`) + "?v=9" : ""
   };
 });
 
@@ -285,7 +289,7 @@ function renderGrid() {
     card.innerHTML = `
       <div class="card-img"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
       <div class="card-info">
-        ${p.size ? `<span class="size">${p.size}</span>` : ""}
+        ${p.size ? `<span class="size">${tagliaHtml(p.size)}</span>` : ""}
       </div>`;
     card.querySelector("img").onerror = () => card.remove();
     card.onclick = () => openModal(p);
