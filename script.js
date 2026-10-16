@@ -132,6 +132,7 @@ const DETTAGLI = {
   64.2: { brand: "Gucci", cat: "Cap", name: "Cappello GG nero", desc: "Cappello da baseball nero in tela GG tono su tono con visiera rigida." },
   65: { brand: "Essentials", cat: "Hoodie", name: "Felpa grigia con cappuccio Essentials", desc: "Felpa grigio melange oversize con cappuccio e scritta Essentials Fear of God sul petto; dietro grande scritta Essentials Fear of God." },
   66: { brand: "Hermès", cat: "Accessories", name: "Cintura nera fibbia H", desc: "Cintura nera in pelle con fibbia H argento." },
+  66.1: { brand: "Hermès", cat: "Accessories", name: "Cintura nera fibbia H dorata", desc: "Cintura nera in pelle martellata con fibbia H dorata e interno verde scuro." },
   50.7: { brand: "Palm Angels", cat: "Jacket", name: "Giacca di jeans nera Palm Angels", desc: "Giacca di jeans nera con lavaggio sbiadito, bottoni argento e due taschini sul petto; dietro scritta Palm Angels bianca con Die Punk rosso effetto spray." },
   "51.2.1": { brand: "Palm Angels", cat: "Sweatpants", name: "Pantaloni track leopardati con bande panna", desc: "Pantaloni sportivi con fantasia leopardata marrone, elastico in vita, bande laterali panna e nere e logo Palm Angels sul davanti." },
   "51.4.1": { brand: "Palm Angels", cat: "Hoodie", name: "Track jacket tartan rossa con bande bianche", desc: "Giacca sportiva con fantasia tartan rossa e nera, zip frontale bianca, collo e polsini neri a coste, bande bianche sulle maniche e logo Palm Angels sul petto." },
@@ -165,7 +166,7 @@ const ORDINE = [24.5, 1, 2, 3, 3.1, 4, 5, 6, 7, 7.1, 8, 9, 10, 11, 12, 12.1, 13,
   27, 28, 28.1, 28.2, 28.3, 28.4, 28.5, 29, 30, 31, 32, 32.5, 32.6, 33, 34, 35, 36, 37, 38, 39, 39.1, 40, 41, 42, 43, 43.1, 44, 45, 45.5, 45.6, 45.7, 45.8, 46, 47, 48, 49,
   50, 50.5, 50.7, 51.3, 51.4, "51.4.1", 51.5, 55, 55.1, 55.2, "55.2.1", 51, 51.1, 50.6, 51.2, "51.2.1", 51.6,
   52, 53, 54, 54.1, 54.2, 54.3, 54.4, 54.5, 54.6, 54.7, 54.8, 54.9, "54.10", 54.11, 56, 58,
-  64, 64.1, 64.2, 64.3, 61, 61.2, 61.3, 60, 60.1, 62, 61.1, 65, 66, 67, 63, 63.1, 63.2, 63.3, 59];
+  64, 64.1, 64.2, 64.3, 61, 61.2, 61.3, 60, 60.1, 62, 61.1, 65, 66, 66.1, 67, 63, 63.1, 63.2, 63.3, 59];
 /* Foto escluse dal catalogo (57 = doppione del piumino Amiri con ossa, tenuto come 24.5) */
 const ESCLUSI = [57];
 const NUMERI = [...ORDINE, ...Array.from({ length: TOTALE }, (_, i) => i + 1).filter(n => !ORDINE.includes(n))]
@@ -201,14 +202,18 @@ const SIZES = {
   "22": "S", "23": "S", "24.5": "M", "25": "85", "27": "M", "28": "M", "28.1": "M", "28.3": "M",
   "28.4": "M", "28.5": "M", "29": "L", "30": "M", "31": "L", "32": "M", "32.5": "M", "32.6": "M",
   "33": "M", "34": "S", "35": "S", "36": "S", "37": "S", "38": "S", "39": "S", "39.1": "S",
-  "40": "M", "41": "85", "44": "M", "45": "S", "45.5": "L", "45.6": "L", "45.7": "M", "45.8": "L",
-  "48": "S", "49": "XS", "50": "M", "50.5": "L", "50.6": "L", "50.7": "L", "51": "L", "51.1": "L",
-  "51.2": "L", "51.2.1": "L", "51.3": "L", "51.4": "L", "51.4.1": "L", "51.5": "M", "52": "85", "53": "85",
-  "54.1": "L", "54.2": "L", "54.3": "XL", "54.4": "XL", "55": "S", "55.1": "L", "55.2": "L", "55.2.1": "L",
-  "56": "M", "58": "M", "61": "L", "61.1": "M", "61.2": "M", "61.3": "M", "62": "M", "65": "M",
-  "67": "L"
+  "40": "M", "41": "85", "44": "M", "45": "S", "45.5": "XL", "45.6": "XL", "45.7": "M", "45.8": "XL",
+  "48": "S", "49": "XS", "50": "M", "50.5": "L", "50.6": "L", "50.7": "XL", "51": "XL", "51.1": "L",
+  "51.2": "XL", "51.2.1": "XL", "51.3": "XL", "51.4": "XL", "51.4.1": "XL", "51.5": "M", "52": "85", "53": "85",
+  "54.1": "XL", "54.2": "XL", "54.3": "XL", "54.4": "XL", "55": "S", "55.1": "XL", "55.2": "XL", "55.2.1": "XL",
+  "56": "M", "58": "M", "61": "L", "61.1": "L", "61.2": "M", "61.3": "M", "62": "M", "63": "7 1:8", "63.1": "7 1:8",
+  "63.2": "7 1:8", "63.3": "7 1:8", "65": "M", "66": "110", "66.1": "110", "67": "L"
 };
 const tagliaDi = n => SIZES[String(n)] || "";
+/* Nel nome del file i ":" non si possono usare: la taglia "7 1:8" si legge dal file "styling (63) 7 1-8.jpeg" */
+const tagliaFile = n => tagliaDi(n).replace(/:/g, "-");
+/* Vecchi nomi file ancora validi se la foto non e' stata rinominata (63.2 e 63.3 erano "1-8") */
+const NOMI_VECCHI = { "63.2": "1-8", "63.3": "1-8" };
 
 const PRODUCTS_RAW = NUMERI.map(n => {
   const d = DETTAGLI[n] || {};
@@ -219,8 +224,9 @@ const PRODUCTS_RAW = NUMERI.map(n => {
     desc: d.desc || "Scrivici per taglia, colore e disponibilita.",
     color: d.color || coloreDi(d.name || "", d.desc || ""),
     size: tagliaDi(n),
-    img: encodeURI(`img/styling (${n})${tagliaDi(n) ? " " + tagliaDi(n) : ""}.${ESTENSIONE}`) + "?v=8",
-    back: BACKS.includes(n) ? encodeURI(`img/styling (${n}) back.${ESTENSIONE}`) + "?v=8" : ""
+    img: encodeURI(`img/styling (${n})${tagliaFile(n) ? " " + tagliaFile(n) : ""}.${ESTENSIONE}`) + "?v=9",
+    imgAlt: NOMI_VECCHI[n] ? encodeURI(`img/styling (${n}) ${NOMI_VECCHI[n]}.${ESTENSIONE}`) + "?v=9" : "",
+    back: BACKS.includes(n) ? encodeURI(`img/styling (${n}) back.${ESTENSIONE}`) + "?v=9" : ""
   };
 });
 
