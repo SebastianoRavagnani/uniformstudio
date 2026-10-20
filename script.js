@@ -328,7 +328,7 @@ function closeDrawer() {
   burger.focus();
 }
 
-const VIEWS = ["home", "viewAbout", "viewPrezzi", "viewCatalog"];
+const VIEWS = ["home", "viewAbout", "viewCatalog"];
 function showView(id) {
   VIEWS.forEach(v => { $(v).hidden = v !== id; });
   /* logo nella barra: in tutte le pagine tranne la home */
@@ -344,12 +344,6 @@ function showCatalog(b, c) {
 }
 function showAbout() {
   showView("viewAbout");
-  document.body.classList.add("page-white");
-  closeDrawer();
-  window.scrollTo(0, 0);
-}
-function showPrezzi() {
-  showView("viewPrezzi");
   document.body.classList.add("page-white");
   closeDrawer();
   window.scrollTo(0, 0);
@@ -375,27 +369,10 @@ function renderDrawer() {
 
   const infoLi = document.createElement("li");
   const infoBtn = document.createElement("button");
-  infoBtn.className = "brand-btn";
-  infoBtn.textContent = "Info e prezzi";
-  infoBtn.setAttribute("aria-expanded", "false");
-  const infoSub = document.createElement("ul");
-  infoSub.className = "cat-list";
-  [["Info", showAbout], ["Prezzi", showPrezzi]].forEach(([label, fn]) => {
-    const cli = document.createElement("li");
-    const cb = document.createElement("button");
-    cb.className = "cat-btn";
-    cb.textContent = label;
-    cb.onclick = fn;
-    cli.appendChild(cb);
-    infoSub.appendChild(cli);
-  });
-  infoBtn.onclick = () => {
-    const isOpen = infoBtn.getAttribute("aria-expanded") === "true";
-    ul.querySelectorAll(".brand-btn").forEach(b => b.setAttribute("aria-expanded", "false"));
-    ul.querySelectorAll(".cat-list").forEach(s => s.classList.remove("open"));
-    if (!isOpen) { infoBtn.setAttribute("aria-expanded", "true"); infoSub.classList.add("open"); }
-  };
-  infoLi.append(infoBtn, infoSub);
+  infoBtn.className = "brand-btn solo";
+  infoBtn.textContent = "Info";
+  infoBtn.onclick = () => showAbout();
+  infoLi.appendChild(infoBtn);
   ul.appendChild(infoLi);
 
   const first = document.createElement("li");

@@ -331,3 +331,7 @@ dialog[open]{column-gap:14px}
     border-image:var(--metal-h) 1;
     box-shadow:0 -1px 0 var(--red-dark)}
 }
+
+/* Finestra del capo: sfondo bianco pieno, niente bande nere ai lati */
+.modal-img{background:#fff}
+dialog.single[open]{background:#fff}
