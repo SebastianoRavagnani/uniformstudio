@@ -2,16 +2,16 @@
    Sostituisci il numero con il tuo WhatsApp (prefisso incluso, senza + e senza spazi). */
 const WHATSAPP = "390000000000";
 
-const BRANDS = ["Amiri", "Bape", "Balenciaga", "Celine", "Palm Angels", "Louis Vuitton", "Moncler", "Off White", "Gucci", "Corteiz", "Zanotti", "Essentials", "Hermès", "Burberry", "New Era"];
+const BRANDS = ["Amiri", "Bape", "Balenciaga", "Celine", "Palm Angels", "Louis Vuitton", "Moncler", "Off White", "Gucci", "Corteiz", "Zanotti", "Essentials", "Hermès", "Burberry", "New Era", "Yeezy", "Timberland", "Jordan", "Nike"];
 /* Nome mostrato al posto del nome interno del brand */
 const BRAND_LABEL = { Bape: "A Bathing Ape" };
 const labelBrand = b => BRAND_LABEL[b] || b;
-const CATS = ["Jacket", "Hoodie", "T-shirt", "Jeans", "Shorts", "Sweatpants", "Accessories", "Cap"];
+const CATS = ["Jacket", "Hoodie", "T-shirt", "Jeans", "Shorts", "Sweatpants", "Shoes", "Accessories", "Cap"];
 
 /* ====== FOTO ======
    Le foto stanno in img/ e si chiamano "styling (1).jpeg" ... "styling (66).jpeg".
    Cambia TOTALE se aggiungi altre foto, ESTENSIONE se non sono .jpeg (es. "jpg", "png"). */
-const TOTALE = 67;
+const TOTALE = 68;
 const ESTENSIONE = "jpeg";
 
 /* ====== BRAND PER NUMERO DI FOTO ======
@@ -151,7 +151,28 @@ const DETTAGLI = {
   "54.10": { brand: "Louis Vuitton", cat: "Accessories", color: "Nero", name: "Borsa a tracolla monogram nera e grigia con pochette", desc: "Borsa a tracolla in tela monogram grigio scuro con zip frontale, tracolla nera e pochette staccabile abbinata." },
   54.11: { brand: "Louis Vuitton", cat: "Accessories", color: "Blu", name: "Borsa a tracolla monogram blu navy con pochette", desc: "Borsa a tracolla in pelle blu navy con fantasia monogram effetto acquerello e pochette staccabile abbinata." },
   66.1: { brand: "Hermès", cat: "Accessories", name: "Cintura nera fibbia H oro", desc: "Cintura nera in pelle con fibbia H oro." },
-  67: { brand: "Burberry", cat: "Shorts", name: "Shorts check beige con logo TB", desc: "Shorts con fantasia check beige, coulisse in vita e logo TB applicato sulla gamba." }
+  67: { brand: "Burberry", cat: "Shorts", name: "Shorts check beige con logo TB", desc: "Shorts con fantasia check beige, coulisse in vita e logo TB applicato sulla gamba." },
+  68: { brand: "Yeezy", cat: "Shoes", name: "Foam Runner nere", desc: "Slip-on in schiuma EVA nera dalla forma scultorea, con fori traforati sui lati e suola unica." },
+  "68.0.1": { brand: "Timberland", cat: "Shoes", name: "Stivali 6-inch neri in nubuck", desc: "Stivali alti in nubuck nero con allacciatura a occhielli, colletto imbottito e suola carrarmato nera." },
+  "68.0.2": { brand: "Jordan", cat: "Shoes", name: "Air Jordan 4 viola in suede", desc: "Sneakers alte in suede con dettagli verde oliva, inserti grigi, punta nera e suola bianca con bolla d'aria visibile." },
+  "68.0.3": { brand: "Jordan", cat: "Shoes", name: "Air Jordan 4 grigio chiaro", desc: "Sneakers alte in pelle e suede grigio chiaro con dettagli dorati, inserti grigi e suola con bolla d'aria." },
+  "68.0.4": { brand: "Timberland", cat: "Shoes", name: "Stivali 6-inch giallo grano in nubuck", desc: "Stivali alti in nubuck giallo grano con colletto imbottito scuro, occhielli dorati e suola in gomma." },
+  "68.0.5": { brand: "Timberland", cat: "Shoes", name: "Stivali giallo grano con colletto in pelo", desc: "Stivali in nubuck giallo grano con colletto imbottito scuro bordato in pelo, stringhe gialle e suola in gomma." },
+  "68.0.6": { brand: "Timberland", cat: "Shoes", name: "Stivali giallo grano foderati in pelo", desc: "Stivali in nubuck giallo grano con interno foderato in pelo, colletto imbottito scuro e suola in gomma." },
+  "68.0.7": { brand: "Timberland", cat: "Shoes", name: "Stivali 6-inch rossi in nubuck", desc: "Stivali alti in nubuck rosso con colletto imbottito, allacciatura tono su tono e suola in gomma." },
+  "68.0.8": { brand: "Amiri", cat: "Shoes", name: "Sneakers nere chunky con logo MA", desc: "Sneakers basse in pelle e rete nera con suola alta, grande patch con logo sul lato e scritta Amiri sul tallone." },
+  "68.0.9": { brand: "Amiri", cat: "Shoes", name: "Sneakers MA-1 bianche e nere", desc: "Sneakers alte in pelle con inserti neri, logo MA sul lato e scritta Amiri sulla suola traslucida." },
+  68.1: { brand: "Timberland", cat: "Shoes", name: "Stivali 6-inch neri tono su tono", desc: "Stivali alti neri con colletto imbottito, allacciatura a occhielli e suola in gomma nera." },
+  "68.1.0": { brand: "Nike", cat: "Shoes", name: "Sneakers Nocta Hot Step nere", desc: "Sneakers basse nere con tomaia a pannelli, swoosh argento e bolla d'aria nella suola." },
+  68.2: { brand: "Jordan", cat: "Shoes", name: "Air Jordan 3 bianche cement", desc: "Sneakers in pelle con stampa elephant grigia su punta e tallone, inserti neri e suola con bolla d'aria." },
+  68.3: { brand: "Timberland", cat: "Shoes", name: "Stivali neri traforati con patch rossa", desc: "Stivali alti in pelle nera traforata con linguetta decorata, piccola patch rossa e suola in gomma nera." },
+  68.4: { brand: "Nike", cat: "Shoes", name: "Air Force 1 bianche tono su tono", desc: "Sneakers basse in pelle bianca con swoosh tono su tono e scritta in corsivo sul fianco." },
+  "68.4.1": { brand: "Gucci", cat: "Shoes", name: "Sneakers Rhyton nere con logo arcobaleno", desc: "Sneakers chunky in pelle nera con grande scritta Gucci multicolore effetto arcobaleno, logo GG e suola in gomma." },
+  68.5: { brand: "Nike", cat: "Shoes", name: "Dunk Low rosse e bianche", desc: "Sneakers basse in pelle con pannelli a contrasto, swoosh laterale e suola con bordo a contrasto." },
+  68.6: { brand: "Timberland", cat: "Shoes", name: "Stivali neri in nubuck con occhielli dorati", desc: "Stivali in nubuck nero con colletto imbottito, occhielli dorati e suola in gomma." },
+  68.7: { brand: "Timberland", cat: "Shoes", name: "Stivali 6-inch blu in nubuck", desc: "Stivali alti in nubuck blu con logo tono su tono, colletto imbottito e suola in gomma." },
+  68.8: { brand: "Timberland", cat: "Shoes", name: "Stivali 6-inch verde acqua in nubuck", desc: "Stivali alti in nubuck verde acqua con logo tono su tono, colletto imbottito e suola in gomma." },
+  68.9: { brand: "Nike", cat: "Shoes", name: "Dunk Low SB arancioni", desc: "Sneakers basse in pelle scamosciata con swoosh chiaro, dettagli a contrasto e suola scura." }
 };
 
 /* ====== FOTO DEL RETRO ======
@@ -165,11 +186,13 @@ const ORDINE = [24.5, 1, 2, 3, 3.1, 4, 5, 6, 7, 7.1, 8, 9, 10, 11, 12, 12.1, 13,
   27, 28, 28.1, 28.3, 28.4, 28.5, 29, 30, 31, 32, 32.5, 32.6, 33, 34, 35, 36, 37, 38, 39, 39.1, 40, 41, 42, 43, 43.1, 44, 45, 45.5, 45.6, 45.7, 45.8, 46, 47, 48, 49,
   50, 50.5, 50.7, 51.3, 51.4, "51.4.1", 51.5, 55, 55.1, 55.2, "55.2.1", 51, 51.1, 50.6, 51.2, "51.2.1", 51.6,
   52, 53, 54, 54.1, 54.2, 54.3, 54.4, 54.5, 54.6, 54.7, 54.8, 54.9, "54.10", 54.11, 56, 58,
-  64, 64.1, 64.2, 64.3, 61, 61.2, 61.3, 60, 60.1, 62, 61.1, 65, 66, 66.1, 67, 63, 63.1, 63.2, 63.3, 59];
+  64, 64.1, 64.2, 64.3, 61, 61.2, 61.3, 60, 60.1, 62, 61.1, 65, 66, 66.1, 67, 63, 63.1, 63.2, 63.3, 59,
+  /* Shoes: Amiri, Gucci, Yeezy, Timberland, Jordan, Nike */
+  "68.0.8", "68.0.9", "68.4.1", 68, "68.0.1", 68.1, 68.3, 68.6, "68.0.4", "68.0.5", "68.0.6", "68.0.7", 68.7, 68.8, "68.0.2", "68.0.3", 68.2, "68.1.0", 68.4, 68.5, 68.9];
 /* Foto escluse dal catalogo (57 = doppione del piumino Amiri con ossa, tenuto come 24.5) */
 const ESCLUSI = [57];
 const NUMERI = [...ORDINE, ...Array.from({ length: TOTALE }, (_, i) => i + 1).filter(n => !ORDINE.includes(n))]
-  .filter(n => parseFloat(n) <= TOTALE && !ESCLUSI.includes(n));
+  .filter(n => Math.floor(parseFloat(n)) <= TOTALE && !ESCLUSI.includes(n));
 
 /* ====== COLORE ======
    Il colore si legge dal nome (poi dalla descrizione): vale la prima parola di colore che compare.
@@ -208,7 +231,10 @@ const SIZES = {
   "56": "M", "58": "M", "61": "L", "61.1": "L", "61.2": "M", "61.3": "M", "62": "M", "65": "M",
   "63": "7 1-8", "63.1": "7 1-8", "63.2": "7 1-8", "63.3": "7 1-8",
   "66": "110", "66.1": "110",
-  "67": "L"
+  "67": "L",
+  "68": "45", "68.0.1": "43", "68.0.2": "44.5", "68.0.3": "44.5", "68.0.4": "43", "68.0.5": "43", "68.0.6": "43", "68.0.7": "43",
+  "68.0.8": "45", "68.0.9": "45", "68.1": "43", "68.1.0": "45", "68.2": "45", "68.3": "43", "68.4": "45", "68.4.1": "43",
+  "68.5": "45", "68.6": "43", "68.7": "43", "68.8": "43", "68.9": "44.5"
 };
 const tagliaDi = n => SIZES[String(n)] || "";
 /* Taglia mostrata: "7 1-8" diventa "7" + spazio + "1:8" (il 7 staccato dalla frazione, i due punti al posto del trattino) */
@@ -230,7 +256,7 @@ const PRODUCTS_RAW = NUMERI.map(n => {
 
 /* Ordine del catalogo: prima per tipo di capo, dentro ogni tipo per marca, dentro ogni marca per colore.
    Per cinture, cuffie, cappelli e borse il tipo si capisce da nome e descrizione. */
-const TIPI = ["Jacket", "Hoodie", "T-shirt", "Jeans", "Sweatpants", "Shorts", "Belt", "Beanie", "Cap", "Bag"];
+const TIPI = ["Jacket", "Hoodie", "T-shirt", "Jeans", "Sweatpants", "Shorts", "Shoes", "Belt", "Beanie", "Cap", "Bag"];
 const tipoDi = p => {
   const t = `${p.name} ${p.desc}`;
   if (p.cat === "Accessories" || p.cat === "Cap") {
