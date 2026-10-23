@@ -170,23 +170,26 @@ const DETTAGLI = {
   68.6: { brand: "Timberland", cat: "Shoes", name: "Stivali neri in nubuck con occhielli dorati", desc: "Stivali in nubuck nero con colletto imbottito, occhielli dorati e suola in gomma." },
   68.7: { brand: "Timberland", cat: "Shoes", name: "Stivali 6-inch blu in nubuck", desc: "Stivali alti in nubuck blu con logo tono su tono, colletto imbottito e suola in gomma." },
   68.8: { brand: "Timberland", cat: "Shoes", name: "Stivali 6-inch verde acqua in nubuck", desc: "Stivali alti in nubuck verde acqua con logo tono su tono, colletto imbottito e suola in gomma." },
-  68.9: { brand: "Nike", cat: "Shoes", name: "Dunk Low SB arancioni", desc: "Sneakers basse in pelle scamosciata con swoosh chiaro, dettagli a contrasto e suola scura." }
+  68.9: { brand: "Nike", cat: "Shoes", name: "Dunk Low SB arancioni", desc: "Sneakers basse in pelle scamosciata con swoosh chiaro, dettagli a contrasto e suola scura." },
+  32.7: { brand: "Bape", cat: "T-shirt", name: "T-shirt bianca Ape Head camo viola", desc: "T-shirt bianca con grande Ape Head in camouflage viola e viola scuro sul petto; dietro stesso Ape Head in camouflage viola." },
+  "68.1.1": { brand: "Bape", cat: "Shoes", name: "Sneakers Bapesta nere camo", desc: "Sneakers basse in vernice nera lucida con stella Bapesta e saetta in camouflage verde e beige, suola bianca con fondo trasparente." },
+  "68.1.2": { brand: "Bape", cat: "Shoes", name: "Sneakers Bapesta argento specchiate", desc: "Sneakers basse in pelle argento metallizzato con motivo in rilievo, stella Bapesta nera a specchio e suola bianca." }
 };
 
 /* ====== FOTO DEL RETRO ======
    Numeri dei capi che hanno anche la foto "styling (N) back.jpeg". */
-const BACKS = [1, 2, 3, 3.1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 28.3, 29, 30, 32.5, 33, 45.5, 50.5, 61, 63, 63.1, 63.2, 63.3, 54.1, 65, 50.7];
+const BACKS = [1, 2, 3, 3.1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 28.3, 29, 30, 32.5, 32.7, 33, 45.5, 50.5, 61, 63, 63.1, 63.2, 63.3, 54.1, 65, 50.7];
 
 /* ====== ORDINE NEL CATALOGO ======
    Numeri delle foto nell'ordine in cui compaiono. Le foto non elencate vanno in fondo, in ordine di numero.
    24.5 = piumino Amiri con ossa (primo degli Amiri), 55 = shorts Palm Angels (fra la giacca 50 e i pantaloni 51). */
 const ORDINE = [24.5, 1, 2, 3, 3.1, 4, 5, 6, 7, 7.1, 8, 9, 10, 11, 12, 12.1, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
-  27, 28, 28.1, 28.3, 28.4, 28.5, 29, 30, 31, 32, 32.5, 32.6, 33, 34, 35, 36, 37, 38, 39, 39.1, 40, 41, 42, 43, 43.1, 44, 45, 45.5, 45.6, 45.7, 45.8, 46, 47, 48, 49,
+  27, 28, 28.1, 28.3, 28.4, 28.5, 29, 30, 31, 32, 32.5, 32.6, 32.7, 33, 34, 35, 36, 37, 38, 39, 39.1, 40, 41, 42, 43, 43.1, 44, 45, 45.5, 45.6, 45.7, 45.8, 46, 47, 48, 49,
   50, 50.5, 50.7, 51.3, 51.4, "51.4.1", 51.5, 55, 55.1, 55.2, "55.2.1", 51, 51.1, 50.6, 51.2, "51.2.1", 51.6,
   52, 53, 54, 54.1, 54.2, 54.3, 54.4, 54.5, 54.6, 54.7, 54.8, 54.9, "54.10", 54.11, 56, 58,
   64, 64.1, 64.2, 64.3, 61, 61.2, 61.3, 60, 60.1, 62, 61.1, 65, 66, 66.1, 67, 63, 63.1, 63.2, 63.3, 59,
   /* Shoes: Amiri, Gucci, Yeezy, Timberland, Jordan, Nike */
-  "68.0.8", "68.0.9", "68.4.1", 68, "68.0.1", 68.1, 68.6, "68.0.4", "68.0.5", "68.0.7", 68.7, 68.8, "68.0.2", "68.0.3", 68.2, "68.1.0", 68.4, 68.5, 68.9];
+  "68.0.8", "68.0.9", "68.1.1", "68.1.2", "68.4.1", 68, "68.0.1", 68.1, 68.6, "68.0.4", "68.0.5", "68.0.7", 68.7, 68.8, "68.0.2", "68.0.3", 68.2, "68.1.0", 68.4, 68.5, 68.9];
 /* Foto escluse dal catalogo (57 = doppione del piumino Amiri con ossa, tenuto come 24.5) */
 const ESCLUSI = [57];
 const NUMERI = [...ORDINE, ...Array.from({ length: TOTALE }, (_, i) => i + 1).filter(n => !ORDINE.includes(n))]
@@ -220,7 +223,7 @@ const SIZES = {
   "7.1": "M", "8": "M", "9": "M", "10": "M", "11": "M", "12": "M", "12.1": "M", "13": "S",
   "14": "S", "15": "S", "16": "S", "17": "S", "18": "S", "19": "S", "20": "S", "21": "S",
   "22": "S", "23": "S", "24.5": "M", "25": "85", "27": "M", "28": "M", "28.1": "M", "28.3": "M",
-  "28.4": "M", "28.5": "M", "29": "L", "30": "M", "31": "L", "32": "M", "32.5": "M", "32.6": "M",
+  "28.4": "M", "28.5": "M", "29": "L", "30": "M", "31": "L", "32": "M", "32.5": "M", "32.6": "M", "32.7": "S",
   "33": "M", "34": "S", "35": "S", "36": "S", "37": "S", "38": "S", "39": "S", "39.1": "S",
   "40": "M", "41": "85", "44": "M", "45": "S", "45.5": "XL", "45.6": "XL", "45.7": "M", "45.8": "XL",
   "48": "S", "49": "XS", "50": "M", "50.5": "L", "50.6": "L", "50.7": "XL", "51": "XL", "51.1": "L",
@@ -231,7 +234,7 @@ const SIZES = {
   "66": "110", "66.1": "110",
   "67": "L",
   "68": "45", "68.0.1": "43", "68.0.2": "44.5", "68.0.3": "44.5", "68.0.4": "43/45", "68.0.5": "43", "68.0.7": "43",
-  "68.0.8": "45", "68.0.9": "45", "68.1": "43", "68.1.0": "45", "68.2": "45", "68.4": "45", "68.4.1": "43",
+  "68.0.8": "45", "68.0.9": "45", "68.1": "43", "68.1.0": "45", "68.1.1": "42.5", "68.1.2": "42.5", "68.2": "45", "68.4": "45", "68.4.1": "43",
   "68.5": "45", "68.6": "43", "68.7": "43", "68.8": "43", "68.9": "44.5"
 };
 const tagliaDi = n => SIZES[String(n)] || "";
