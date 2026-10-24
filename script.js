@@ -296,7 +296,7 @@ function renderFilters() {
     b.className = "chip";
     b.textContent = c;
     b.setAttribute("aria-pressed", c === cat);
-    b.onclick = () => { cat = c; renderFilters(); renderGrid(); saveState(); };
+    b.onclick = () => { cat = c; renderFilters(); renderGrid(); if (stack[navIdx]) stack[navIdx].cat = c; };
     filters.appendChild(b);
   });
 }
@@ -361,19 +361,16 @@ function closeDrawer() {
 const VIEWS = ["home", "viewAbout", "viewCatalog"];
 
 /* ---- Cronologia: ogni pagina visitata e' una voce della history del browser ----
-   Cosi' funzionano sia lo swipe verso destra (qui sotto) sia il gesto/tasto "indietro" del telefono. */
+   "stack" ricorda per ogni voce: pagina, brand, categoria e posizione di scroll. */
 let navIdx = 0;
-function saveState() {
-  /* aggiorna la voce corrente (filtro scelto e posizione di scroll) senza aggiungerne una nuova */
-  const st = history.state || {};
-  history.replaceState({ ...st, idx: navIdx, brand, cat, y: window.scrollY }, "");
-}
+const stack = [{ view: "home", brand: "Tutti", cat: "Tutti", y: 0 }];
 function go(view, push) {
-  if (push) {
-    saveState();
-    navIdx++;
-    history.pushState({ idx: navIdx, view, brand, cat, y: 0 }, "");
-  }
+  if (!push) return;
+  if (stack[navIdx]) stack[navIdx].y = window.scrollY; /* ricorda lo scroll della pagina che lasci */
+  stack.length = navIdx + 1;
+  navIdx++;
+  stack.push({ view, brand, cat, y: 0 });
+  history.pushState({ idx: navIdx }, "");
 }
 
 function showView(id) {
@@ -405,16 +402,16 @@ function showHome(push = true) {
   window.scrollTo(0, 0);
 }
 
-/* Indietro/avanti del browser: ridisegna la pagina salvata nella voce di cronologia */
+/* Indietro/avanti del browser: ridisegna la pagina salvata nella pila */
 window.addEventListener("popstate", e => {
-  const st = e.state;
-  if (!st) return;
-  navIdx = st.idx || 0;
+  const idx = e.state && typeof e.state.idx === "number" ? e.state.idx : 0;
+  const en = stack[idx] || stack[0];
+  navIdx = stack[idx] ? idx : 0;
   if (modal.open) modal.close();
-  if (st.view === "viewCatalog") showCatalog(st.brand || "Tutti", st.cat || "Tutti", false);
-  else if (st.view === "viewAbout") showAbout(false);
+  if (en.view === "viewCatalog") showCatalog(en.brand, en.cat, false);
+  else if (en.view === "viewAbout") showAbout(false);
   else showHome(false);
-  window.scrollTo(0, st.y || 0);
+  window.scrollTo(0, en.y || 0);
 });
 
 /* ---- Swipe verso destra = pagina precedente ---- */
@@ -425,7 +422,7 @@ window.addEventListener("popstate", e => {
     sx = t.clientX; sy = t.clientY; st = Date.now();
     /* niente swipe: con un solo dito soltanto, partendo dal bordo (gesto di sistema),
        dentro la scheda foto, con il menu aperto o sulla riga dei filtri (scorre in orizzontale) */
-    ok = e.touches.length === 1 && sx > 24 &&
+    ok = e.touches.length === 1 && sx > 40 &&
       !modal.open && !drawer.classList.contains("open") &&
       !e.target.closest("#filters");
   }, { passive: true });
@@ -435,7 +432,7 @@ window.addEventListener("popstate", e => {
     const t = e.changedTouches[0];
     const dx = t.clientX - sx, dy = Math.abs(t.clientY - sy);
     if (dx > 90 && dy < dx * 0.5 && Date.now() - st < 700 && Date.now() - lock > 500) {
-      if (history.state && history.state.idx > 0) { lock = Date.now(); history.back(); }
+      if (navIdx > 0) { lock = Date.now(); history.back(); }
     }
   }, { passive: true });
   document.addEventListener("touchcancel", () => { ok = false; }, { passive: true });
@@ -511,4 +508,4 @@ renderDrawer();
 renderFilters();
 renderGrid();
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-history.replaceState({ idx: 0, view: "home", brand, cat, y: 0 }, "");
+history.replaceState({ idx: 0 }, "");
