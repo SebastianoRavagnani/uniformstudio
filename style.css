@@ -335,3 +335,10 @@ dialog[open]{column-gap:14px}
 /* Finestra del capo: sfondo bianco pieno, niente bande nere ai lati */
 .modal-img{background:#fff}
 dialog.single[open]{background:#fff}
+
+
+/* Home: link Instagram sotto le scritte */
+.home .h-insta{display:inline-flex;align-items:center;gap:.6em;margin-top:clamp(14px,3vw,28px);padding:.5em 1.1em;color:var(--red);text-decoration:none;text-transform:none;font-family:"Inter","DM Sans",system-ui,sans-serif;font-weight:600;font-size:clamp(1rem,3.2vw,1.35rem);letter-spacing:.02em;border:1px solid var(--red);border-radius:999px;transition:background .2s,color .2s,transform .2s}
+.home .h-insta svg{width:1.3em;height:1.3em;flex:none}
+.home .h-insta:hover,.home .h-insta:focus-visible{background:var(--red);color:var(--white);transform:translateY(-2px)}
+.home .h-insta:focus-visible{outline:2px solid var(--red);outline-offset:3px}
