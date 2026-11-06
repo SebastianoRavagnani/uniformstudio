@@ -58,6 +58,7 @@ const DETTAGLI = {
   22: { brand: "Amiri", cat: "Jeans", name: "Jeans blu strappati", desc: "Jeans blu medio con lavaggio vissuto, strappi e toppe sulle ginocchia." },
   23: { brand: "Amiri", cat: "Jeans", name: "Jeans azzurri strappati", desc: "Jeans skinny azzurro chiaro con strappi e rattoppi sulle ginocchia." },
   24: { brand: "Amiri", cat: "Accessories", name: "Borsa a tracolla nera Arts District", desc: "Borsa a tracolla nera con grande stampa bianca Amiri Arts District e dettagli metallici." },
+  24.1: { brand: "Amiri", cat: "Accessories", name: "Borsa a tracolla nera con bandana ricamata", desc: "Borsa a tracolla in pelle nera con zip superiore, fantasia bandana ricamata in bianco e nero e grande monogramma MA ricamato al centro." },
   25: { brand: "Amiri", cat: "Accessories", name: "Cintura con fibbia monogramma", desc: "Cintura grigio scuro con motivo a monogrammi e fibbia MA argento." },
   26: { brand: "Amiri", cat: "Accessories", name: "Cappello in lana nero", desc: "Berretto in maglia a coste nero con piccola placca MA sul risvolto." },
   27: { brand: "Bape", cat: "Hoodie", name: "Felpa zip Shark camo nera", desc: "Felpa con cappuccio e zip integrale, fantasia camouflage nera e grafica squalo sul cappuccio." },
@@ -177,7 +178,7 @@ const BACKS = [1, 2, 3, 3.1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 28.3, 29, 30, 32.5, 3
 /* ====== ORDINE NEL CATALOGO ======
    Numeri delle foto nell'ordine in cui compaiono. Le foto non elencate vanno in fondo, in ordine di numero.
    24.5 = piumino Amiri con ossa (primo degli Amiri), 55 = shorts Palm Angels (fra la giacca 50 e i pantaloni 51). */
-const ORDINE = [24.5, 1, 2, 3, 3.1, 4, 5, 6, 7, 7.1, 8, 9, 10, 11, 12, 12.1, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+const ORDINE = [24.5, 1, 2, 3, 3.1, 4, 5, 6, 7, 7.1, 8, 9, 10, 11, 12, 12.1, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 24.1, 25, 26,
   27, 28, 28.1, 28.3, 28.4, 28.5, 29, 30, 31, 32, 32.5, 32.6, 32.7, 33, 34, 35, 36, 37, 38, 39, 39.1, 40, 41, 42, 43, 43.1, 44, 45, 45.5, 45.6, 45.8, 46, 47, 48, 49,
   50, 50.5, 50.7, 51.3, 51.4, "51.4.1", 51.5, 55, 55.1, 55.2, "55.2.1", 51, 50.6, 51.2, "51.2.1", 51.6,
   52, 53, 54, 54.1, 54.2, 54.3, 54.4, 54.6, 54.7, 54.8, 54.9, "54.10", 54.11, 56, 58,
