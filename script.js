@@ -246,6 +246,9 @@ const tagliaHtml = s => s.replace(/^(\d+)\s+(\d+)-(\d+)$/, '$1<i class="sz-gap">
 /* Foto con un numero diverso da quello del capo: chiave = numero del capo, valore = numero usato nel nome del file. */
 const FILE_NUM = { "68.4.1": "68.4" };
 
+/* Capi da mettere per ultimi nel loro tipo (es. ultimi nella pagina dei jeans). */
+const IN_FONDO = [23.2];
+
 const PRODUCTS_RAW = NUMERI.map(n => {
   const d = DETTAGLI[n] || {};
   return {
@@ -254,6 +257,7 @@ const PRODUCTS_RAW = NUMERI.map(n => {
     name: d.name || `Capo ${n}`,
     desc: d.desc || "Scrivici per taglia, colore e disponibilita.",
     color: d.color || coloreDi(d.name || "", d.desc || ""),
+    last: IN_FONDO.includes(n),
     size: tagliaDi(n),
     img: encodeURI(`img/styling (${FILE_NUM[String(n)] || n})${tagliaFile(n) ? " " + tagliaFile(n) : ""}.${ESTENSIONE}`) + "?v=10",
     back: BACKS.includes(n) ? encodeURI(`img/styling (${n}) back.${ESTENSIONE}`) + "?v=10" : ""
@@ -280,7 +284,7 @@ const rangoTipo = p => { const i = TIPI.indexOf(tipoDi(p)); return i < 0 ? TIPI.
 const ORDINE_BRAND = [...new Set(PRODUCTS_RAW.map(p => p.brand))];
 const PRODUCTS = PRODUCTS_RAW
   .map((p, i) => ({ p, i }))
-  .sort((a, b) => rangoTipo(a.p) - rangoTipo(b.p) || ORDINE_BRAND.indexOf(a.p.brand) - ORDINE_BRAND.indexOf(b.p.brand) || rangoColore(a.p) - rangoColore(b.p) || a.i - b.i)
+  .sort((a, b) => rangoTipo(a.p) - rangoTipo(b.p) || (a.p.last - b.p.last) || ORDINE_BRAND.indexOf(a.p.brand) - ORDINE_BRAND.indexOf(b.p.brand) || rangoColore(a.p) - rangoColore(b.p) || a.i - b.i)
   .map(x => x.p);
 
 const $ = id => document.getElementById(id);
