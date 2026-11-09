@@ -170,6 +170,7 @@ const DETTAGLI = {
   "68.1.2": { brand: "Bape", cat: "Shoes", name: "Sneakers Bapesta argento specchiate", desc: "Sneakers basse in pelle argento metallizzato con motivo in rilievo, stella Bapesta nera a specchio e suola bianca." },
   "68.1.3": { brand: "Burberry", cat: "Shoes", name: "Scarponcini beige check e cuoio con logo TB", desc: "Scarponcini alti in pelle cuoio e suede marrone con pannello check Burberry beige, collo nero traforato, occhielli metallici, logo TB sul tallone e suola carrarmato nera." },
   23.1: { brand: "Amiri", cat: "Jeans", name: "Jeans blu scuro con toppe a righe", desc: "Jeans skinny blu scuro con lavaggio sbiadito, strappi e grandi toppe a righe panna e rosa sulle ginocchia." },
+  23.2: { brand: "Amiri", cat: "Jeans", name: "Jeans bianchi skinny con toppe", desc: "Jeans skinny bianchi con strappi e toppe a coste sulle ginocchia e sulla coscia, bottone e dettagli argento." },
   33.1: { brand: "Bape", cat: "T-shirt", name: "Polo camo viola con Ape Head", desc: "Polo a maniche corte con camouflage viola e rosa, colletto e polsini a coste viola, bottoni sul davanti e grande Ape Head bianco sul petto." },
   33.2: { brand: "Bape", cat: "Hoodie", name: "Felpa girocollo camo viola", desc: "Felpa girocollo con camouflage viola e rosa, Ape Head bianco sul petto, scritta BAPE bianca sulle maniche e polsini e fondo a coste viola." },
   33.3: { brand: "Bape", cat: "T-shirt", name: "T-shirt nera Shark camo viola", desc: "T-shirt nera girocollo con grande squalo dietro in camouflage viola con zip centrale, occhi bianchi e piccola patch sulla manica." }
@@ -182,7 +183,7 @@ const BACKS = [1, 2, 3, 3.1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 28.3, 29, 30, 32.5, 3
 /* ====== ORDINE NEL CATALOGO ======
    Numeri delle foto nell'ordine in cui compaiono. Le foto non elencate vanno in fondo, in ordine di numero.
    24.5 = piumino Amiri con ossa (primo degli Amiri), 55 = shorts Palm Angels (fra la giacca 50 e i pantaloni 51). */
-const ORDINE = [24.5, 1, 2, 3, 3.1, 4, 5, 6, 7, 7.1, 8, 9, 10, 11, 12, 12.1, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 23.1, 24, 24.1, 25, 26,
+const ORDINE = [24.5, 1, 2, 3, 3.1, 4, 5, 6, 7, 7.1, 8, 9, 10, 11, 12, 12.1, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 23.1, 23.2, 24, 24.1, 25, 26,
   27, 28, 28.1, 28.3, 28.4, 28.5, 29, 30, 31, 32, 32.5, 32.6, 32.7, 33, 33.1, 33.2, 33.3, 34, 35, 36, 37, 38, 39, 39.1, 40, 41, 42, 43, 43.1, 44, 45, 45.5, 45.6, 45.8, 46, 47, 48, 49,
   50, 50.5, 50.7, 51.3, 51.4, "51.4.1", 51.5, 55, 55.1, 55.2, "55.2.1", 51, 50.6, 51.2, "51.2.1", 51.6,
   52, 53, 54, 54.1, 54.2, 54.3, 54.4, 54.6, 54.7, 54.8, 54.9, "54.10", 54.11, 56, 58,
@@ -221,7 +222,7 @@ const SIZES = {
   "1": "S", "2": "M", "3": "M", "3.1": "M", "4": "M", "5": "S", "6": "M", "7": "M",
   "7.1": "M", "8": "M", "9": "M", "10": "M", "11": "M", "12": "M", "12.1": "M", "13": "S",
   "14": "S", "15": "S", "16": "S", "17": "S", "18": "S", "19": "S", "20": "S", "21": "S",
-  "22": "S", "23": "S", "23.1": "S", "24.5": "M", "25": "85", "27": "M", "28": "M", "28.1": "M", "28.3": "M",
+  "22": "S", "23": "S", "23.1": "S", "23.2": "S", "24.5": "M", "25": "85", "27": "M", "28": "M", "28.1": "M", "28.3": "M",
   "28.4": "M", "28.5": "M", "29": "L", "30": "M", "31": "L", "32": "M", "32.5": "M", "32.6": "M", "32.7": "S",
   "33": "M", "33.1": "S", "33.2": "M", "33.3": "M", "34": "S", "35": "S", "36": "S", "37": "S", "38": "S", "39": "S", "39.1": "S",
   "40": "M", "41": "85", "44": "M", "45": "S", "45.5": "XL", "45.6": "XL", "45.8": "XL",
