@@ -221,8 +221,8 @@ const coloreDi = (name, desc) => coloreIn(name) || coloreIn(desc) || "Altro";
 const SIZES = {
   "1": "S", "2": "M", "3": "M", "3.1": "M", "4": "M", "5": "S", "6": "M", "7": "M",
   "7.1": "M", "8": "M", "9": "M", "10": "M", "11": "M", "12": "M", "12.1": "M", "13": "S",
-  "14": "S", "15": "S", "16": "S", "17": "S", "18": "S", "19": "S", "20": "S", "21": "S",
-  "22": "S", "23": "S", "23.1": "S", "23.2": "S", "24.5": "M", "25": "85", "27": "M", "28": "M", "28.1": "M", "28.3": "M",
+  "14": "S", "15": "S", "16": "S", "17": "S", "18": "31", "19": "32", "20": "31", "21": "32",
+  "22": "31", "23": "31", "23.1": "31", "23.2": "31", "24.5": "M", "25": "85", "27": "M", "28": "M", "28.1": "M", "28.3": "M",
   "28.4": "M", "28.5": "M", "29": "L", "30": "M", "31": "L", "32": "M", "32.5": "M", "32.6": "M", "32.7": "S",
   "33": "M", "33.1": "S", "33.2": "M", "33.3": "M", "34": "S", "35": "S", "36": "S", "37": "S", "38": "S", "39": "S", "39.1": "S",
   "40": "M", "41": "85", "44": "M", "45": "S", "45.5": "XL", "45.6": "XL", "45.8": "XL",
@@ -311,7 +311,7 @@ function renderFilters() {
 function renderGrid() {
   const list = PRODUCTS.filter(p =>
     (brand === "Tutti" || p.brand === brand) && (cat === "Tutti" || p.cat === cat));
-  $("catTitle").textContent = brand === "Tutti" ? "Catalogo generale" : `${labelBrand(brand)}, ${cat}`;
+  $("catTitle").textContent = brand === "Tutti" ? "Catalogo generale" : (cat === "Tutti" ? labelBrand(brand) : `${labelBrand(brand)}, ${cat}`);
   filters.hidden = brand !== "Tutti";
   count.textContent = `${list.length} ${list.length === 1 ? "capo" : "capi"}`;
   grid.innerHTML = "";
@@ -364,7 +364,7 @@ function closeDrawer() {
   burger.focus();
 }
 
-const VIEWS = ["home", "viewAbout", "viewCatalog"];
+const VIEWS = ["home", "viewCatalog"];
 
 /* ---- Cronologia: ogni pagina visitata e' una voce della history del browser ----
    "stack" ricorda per ogni voce: pagina, brand, categoria e posizione di scroll. */
@@ -393,13 +393,6 @@ function showCatalog(b, c, push = true) {
   go("viewCatalog", push);
   window.scrollTo(0, 0);
 }
-function showAbout(push = true) {
-  showView("viewAbout");
-  document.body.classList.add("page-white");
-  closeDrawer();
-  go("viewAbout", push);
-  window.scrollTo(0, 0);
-}
 function showHome(push = true) {
   showView("home");
   document.body.classList.remove("page-white");
@@ -415,7 +408,6 @@ window.addEventListener("popstate", e => {
   navIdx = stack[idx] ? idx : 0;
   if (modal.open) modal.close();
   if (en.view === "viewCatalog") showCatalog(en.brand, en.cat, false);
-  else if (en.view === "viewAbout") showAbout(false);
   else showHome(false);
   window.scrollTo(0, en.y || 0);
 });
@@ -456,14 +448,6 @@ function renderDrawer() {
   homeLi.appendChild(homeBtn);
   ul.appendChild(homeLi);
 
-  const infoLi = document.createElement("li");
-  const infoBtn = document.createElement("button");
-  infoBtn.className = "brand-btn solo";
-  infoBtn.textContent = "Info";
-  infoBtn.onclick = () => showAbout();
-  infoLi.appendChild(infoBtn);
-  ul.appendChild(infoLi);
-
   const first = document.createElement("li");
   const gen = document.createElement("button");
   gen.className = "brand-btn solo";
@@ -478,9 +462,18 @@ function renderDrawer() {
     const available = catDi(name);
     if (!available.length) return;
     const li = document.createElement("li");
+    const row = document.createElement("div");
+    row.className = "brand-row";
+    /* Nome del brand: apre il catalogo di tutti i suoi capi, in ordine di gruppo (Jacket, Hoodie, T-shirt...) */
+    const nameBtn = document.createElement("button");
+    nameBtn.className = "brand-btn brand-name";
+    nameBtn.textContent = labelBrand(name);
+    nameBtn.onclick = () => showCatalog(name, "Tutti");
+    /* "+" a destra: apre/chiude l'elenco delle sezioni del brand */
     const btn = document.createElement("button");
-    btn.className = "brand-btn";
-    btn.textContent = labelBrand(name);
+    btn.className = "brand-toggle";
+    btn.textContent = "+";
+    btn.setAttribute("aria-label", `Sezioni ${labelBrand(name)}`);
     btn.setAttribute("aria-expanded", "false");
     const sub = document.createElement("ul");
     sub.className = "cat-list";
@@ -495,11 +488,12 @@ function renderDrawer() {
     });
     btn.onclick = () => {
       const isOpen = btn.getAttribute("aria-expanded") === "true";
-      ul.querySelectorAll(".brand-btn").forEach(b => b.setAttribute("aria-expanded", "false"));
-      ul.querySelectorAll(".cat-list").forEach(s => s.classList.remove("open"));
+      ul.querySelectorAll(".brand-toggle").forEach(b => b.setAttribute("aria-expanded", "false"));
+      ul.querySelectorAll(".cat-list").forEach(x => x.classList.remove("open"));
       if (!isOpen) { btn.setAttribute("aria-expanded", "true"); sub.classList.add("open"); }
     };
-    li.append(btn, sub);
+    row.append(nameBtn, btn);
+    li.append(row, sub);
     ul.appendChild(li);
   });
 }

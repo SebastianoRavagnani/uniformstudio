@@ -342,3 +342,12 @@ dialog.single[open]{background:#fff}
 .home .h-insta svg{width:1.3em;height:1.3em;flex:none}
 .home .h-insta:hover,.home .h-insta:focus-visible{background:var(--red);color:var(--white);transform:translateY(-2px)}
 .home .h-insta:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+
+/* ===== Menu brand: nome = tutto il brand, "+" a destra = sezioni ===== */
+.brand-row{display:flex;align-items:stretch}
+.brand-btn.brand-name{flex:1;width:auto;min-width:0}
+.brand-btn.brand-name::after{content:none}
+.brand-toggle{flex:0 0 68px;display:flex;align-items:center;justify-content:center;background:none;border:0;color:var(--red);font-family:var(--body);font-size:1.8rem;font-weight:700;cursor:pointer;transition:transform .25s,color .2s}
+.brand-toggle:hover{color:var(--red-dark)}
+.brand-toggle[aria-expanded="true"]{transform:rotate(45deg)}
